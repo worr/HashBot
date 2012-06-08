@@ -175,9 +175,6 @@ sub get_status_id {
 		my $last_status_id = <STATUS>;
 		return($last_status_id);
 	}
-	else {
-		return;
-	}
 }
 
 # Write the new statusID to the file
