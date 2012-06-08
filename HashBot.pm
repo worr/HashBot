@@ -137,10 +137,10 @@ sub post_to_twitter {
 			if ($tweet->{text} !~ /^(\s*)?(RT|rt)/) {
 
 				# See if we have run before
-				if(&get_status_id) {
+				if(get_status_id) {
 
 					# Only RT things since the last runtime
-					if ($tweet->{id} > &get_status_id) {
+					if ($tweet->{id} > get_status_id) {
 						post_tweet($tweet, $self);
 					}
 				}
@@ -154,7 +154,7 @@ sub post_to_twitter {
 	}
 
 	# Write the latest ID to a file to track for next time
-	&write_status_id($data->{results}[0]->{id});
+	write_status_id($data->{results}[0]->{id});
 }
 
 # Send the data to Twitter
