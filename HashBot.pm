@@ -171,8 +171,9 @@ sub post_tweet {
 # Load in the previous statusID from the file
 sub get_status_id {
 	if (-e "hashbot_last_status") {
-		open(STATUS,"hashbot_last_status");
-		my $last_status_id = <STATUS>;
+		open(my $status, "<","hashbot_last_status") or die "Could not open hashbot_last_status for read: $!";
+		my $last_status_id = <$status>;
+		close($status);
 		return($last_status_id);
 	}
 }
@@ -180,9 +181,9 @@ sub get_status_id {
 # Write the new statusID to the file
 sub write_status_id {
 	my ( $status_id ) = @_;
-	open (STATUS, ">hashbot_last_status");
-	print STATUS $status_id;
-	close(STATUS);
+	open (my $status, ">", "hashbot_last_status") or die "Could not open hashbot_last_status for write: $!";
+	print $status $status_id;
+	close($status);
 	return 1;
 }
 1;
